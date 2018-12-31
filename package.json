@@ -1,0 +1,18 @@
+{
+  "name": "belajar-node_express",
+  "version": "1.0.0",
+  "description": "Gadad bos beleajar doang 3hh3",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
+  },
+  "keywords": [
+    "nodejs"
+  ],
+  "author": "Mohamad Radisha",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.16.4"
+  }
+}
