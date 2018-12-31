@@ -29,6 +29,14 @@ app.get('/users', function(req,res) {
     res.send(JSON.stringify(obj))
 })
 
+app.get('/user/:id', function(req, res) {
+    if (obj[req.params.id]) {
+        res.send(JSON.stringify(obj[req.params.id]))
+    } else {
+        res.send("No data found!")
+    }
+})
+
 app.listen(port, function() {
     console.log("App listening on port %d", port)
 })
