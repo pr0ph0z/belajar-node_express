@@ -1,4 +1,5 @@
 const express = require('express')
+const helper = require('./helper')
 
 const app = express()
 const port = 8080
@@ -30,11 +31,8 @@ app.get('/users', function(req,res) {
 })
 
 app.get('/user/:id', function(req, res) {
-    if (obj[req.params.id]) {
-        res.send(JSON.stringify(obj[req.params.id]))
-    } else {
-        res.send("No data found!")
-    }
+    find = helper.findData(obj, req.params.id)
+    res.send((find == undefined ? "No data found!" : find))
 })
 
 app.listen(port, function() {
