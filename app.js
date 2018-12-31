@@ -26,24 +26,24 @@ let obj = [
     }
 ]
 
-app.get('/', function(req, res) {
+app.get('/', (req, res) => {
     res.send("Lg ap?")
 })
 
-app.get('/users', function(req,res) {
+app.get('/users', (req, res) => {
     res.send(JSON.stringify(obj))
 })
 
-app.get('/user/:id', function(req, res) {
+app.get('/user/:id', (req, res) => {
     find = helper.findData(obj, req.params.id)
     res.send((find == undefined ? "No data found!" : find))
 })
 
-app.post('/user', function(req, res) {
+app.post('/user', (req, res) => {
     res.send(Object.keys(req.body).length != 0 ? req.body : "No data sent!")
 })
 
-app.put('/user/:id', function(req, res) {
+app.put('/user/:id', (req, res) => {
     find = helper.findData(obj, req.params.id)
     if(find != undefined) {
         let result = {
