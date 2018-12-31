@@ -31,16 +31,44 @@ app.get('/', (req, res) => {
 })
 
 app.get('/users', (req, res) => {
-    res.send(JSON.stringify(obj))
+    let result = {
+        data: obj,
+        status: 200
+    }
+    res.send(JSON.stringify(result))
 })
 
 app.get('/user/:id', (req, res) => {
     find = helper.findData(obj, req.params.id)
-    res.send((find == undefined ? "No data found!" : find))
+    if(find != undefined) {
+        let result = {
+            data: find,
+            status: 200
+        }
+    } else {
+        let result = {
+            message: "Data not found",
+            status: 404
+        }
+    }
+    res.send((find == undefined ? "No data found!" : result))
 })
 
 app.post('/user', (req, res) => {
-    res.send(Object.keys(req.body).length != 0 ? req.body : "No data sent!")
+    if(Object.keys(req.body).length != 0) {
+        let result = {
+            data: req.body,
+            message: "Data saved",
+            status: 200
+        }
+    } else {
+        let result = {
+            data: req.body,
+            message: "Something went wrong",
+            status: 400
+        }
+    }
+    res.send()
 })
 
 app.put('/user/:id', (req, res) => {
@@ -48,10 +76,17 @@ app.put('/user/:id', (req, res) => {
     if(find != undefined) {
         let result = {
             id: req.params.id,
-            data: req.body
+            data: req.body,
+            message: "Data updated",
+            status: 200
         }
         res.send(JSON.stringify(result))
     } else {
+        let result = {
+            id: req.params.id,
+            message: "Not found",
+            status: 404
+        }
         res.send("No data found!")
     }
 })
@@ -61,10 +96,16 @@ app.delete('/user/:id', (req, res) => {
     if(find != undefined) {
         let result = {
             id: req.params.id,
-            message: "Data deleted"
+            message: "Data deleted",
+            status: 200
         }
         res.send(JSON.stringify(result))
     } else {
+        let result = {
+            id: req.params.id,
+            message: "Not found",
+            status: 404
+        }
         res.send("No data found!")
     }
 })
