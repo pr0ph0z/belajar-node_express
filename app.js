@@ -56,6 +56,19 @@ app.put('/user/:id', (req, res) => {
     }
 })
 
+app.delete('/user/:id', (req, res) => {
+    find = helper.findData(obj, req.params.id)
+    if(find != undefined) {
+        let result = {
+            id: req.params.id,
+            message: "Data deleted"
+        }
+        res.send(JSON.stringify(result))
+    } else {
+        res.send("No data found!")
+    }
+})
+
 app.listen(port, function() {
     console.log("App listening on port %d", port)
 })
