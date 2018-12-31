@@ -35,7 +35,7 @@ app.get('/users', (req, res) => {
         data: obj,
         status: 200
     }
-    res.json(result, 200)
+    res.status(200).json(result)
 })
 
 app.get('/user/:id', (req, res) => {
@@ -45,13 +45,13 @@ app.get('/user/:id', (req, res) => {
             data: find,
             status: 200
         }
-        res.json(result, 200)
+        res.status(200).json(result)
     } else {
         let result = {
             message: "Data not found",
             status: 404
         }
-        res.json(result, 404)
+        res.status(404).json(result)
     }
 })
 
@@ -62,7 +62,7 @@ app.post('/users', (req, res) => {
             message: "Data saved",
             status: 200
         }
-        res.json(result, 200)
+        res.status(200).json(result)
     } else {
         let result = {
             data: req.body,
@@ -82,14 +82,14 @@ app.put('/user/:id', (req, res) => {
             message: "Data updated",
             status: 200
         }
-        res.json(result, 200)
+        res.status(200).json(result)
     } else {
         let result = {
             id: req.params.id,
             message: "No data found!",
             status: 404
         }
-        res.json(result, 200)
+        res.status(404).json(result)
     }
 })
 
@@ -101,14 +101,14 @@ app.delete('/user/:id', (req, res) => {
             message: "Data deleted",
             status: 200
         }
-        res.json(result, 200)
+        res.status(200).json(result)
     } else {
         let result = {
             id: req.params.id,
             message: "Not found",
             status: 404
         }
-        res.json(result, 200)
+        res.status(404).json(result)
     }
 })
 
