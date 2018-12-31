@@ -35,7 +35,7 @@ app.get('/users', (req, res) => {
         data: obj,
         status: 200
     }
-    res.send(JSON.stringify(result))
+    res.json(result, 200)
 })
 
 app.get('/user/:id', (req, res) => {
@@ -45,30 +45,32 @@ app.get('/user/:id', (req, res) => {
             data: find,
             status: 200
         }
+        res.json(result, 200)
     } else {
         let result = {
             message: "Data not found",
             status: 404
         }
+        res.json(result, 404)
     }
-    res.send((find == undefined ? "No data found!" : result))
 })
 
-app.post('/user', (req, res) => {
+app.post('/users', (req, res) => {
     if(Object.keys(req.body).length != 0) {
         let result = {
             data: req.body,
             message: "Data saved",
             status: 200
         }
+        res.json(result, 200)
     } else {
         let result = {
             data: req.body,
             message: "Something went wrong",
             status: 400
         }
+        res.json(result, 400)
     }
-    res.send()
 })
 
 app.put('/user/:id', (req, res) => {
@@ -80,14 +82,14 @@ app.put('/user/:id', (req, res) => {
             message: "Data updated",
             status: 200
         }
-        res.send(JSON.stringify(result))
+        res.json(result, 200)
     } else {
         let result = {
             id: req.params.id,
-            message: "Not found",
+            message: "No data found!",
             status: 404
         }
-        res.send("No data found!")
+        res.json(result, 200)
     }
 })
 
@@ -99,14 +101,14 @@ app.delete('/user/:id', (req, res) => {
             message: "Data deleted",
             status: 200
         }
-        res.send(JSON.stringify(result))
+        res.json(result, 200)
     } else {
         let result = {
             id: req.params.id,
             message: "Not found",
             status: 404
         }
-        res.send("No data found!")
+        res.json(result, 200)
     }
 })
 
