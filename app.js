@@ -43,6 +43,19 @@ app.post('/user', function(req, res) {
     res.send(Object.keys(req.body).length != 0 ? req.body : "No data sent!")
 })
 
+app.put('/user/:id', function(req, res) {
+    find = helper.findData(obj, req.params.id)
+    if(find != undefined) {
+        let result = {
+            id: req.params.id,
+            data: req.body
+        }
+        res.send(JSON.stringify(result))
+    } else {
+        res.send("No data found!")
+    }
+})
+
 app.listen(port, function() {
     console.log("App listening on port %d", port)
 })
